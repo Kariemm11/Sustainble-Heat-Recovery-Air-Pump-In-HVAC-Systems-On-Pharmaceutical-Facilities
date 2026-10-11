@@ -408,8 +408,7 @@
     function finder(r, k) { return (r < 7 && k < 7) || (r < 7 && k >= n - 7) || (r >= n - 7 && k < 7); }
     for (var r = 0; r < n; r++) for (var k = 0; k < n; k++) {
       if (!qr.isDark(r, k) || finder(r, k)) continue;
-      var x = (k + quiet) * cell, y = (r + quiet) * cell, m = cell * 0.08;
-      roundRect(c, x + m, y + m, cell - 2 * m, cell - 2 * m, cell * 0.3); c.fill();
+      c.fillRect((k + quiet) * cell, (r + quiet) * cell, cell, cell);
     }
     // rounded finder patterns in the project colours
     [[0, 0, "#1273cc"], [0, n - 7, "#7c5cf0"], [n - 7, 0, "#dd6a14"]].forEach(function (f) {
@@ -517,7 +516,7 @@
     });
     document.addEventListener("keydown", function (e) {
       if (e.key !== "Escape") return;
-      if (!qm.hidden) closeQR(); else if (!v.hidden) close();
+      if (qm.classList.contains("open")) closeQR(); else if (!v.hidden) close();
     });
     themeListeners.push(function (t) { try { frame.contentWindow.postMessage({ type: "hr-theme", value: t }, "*"); } catch (e) {} });
   })();
