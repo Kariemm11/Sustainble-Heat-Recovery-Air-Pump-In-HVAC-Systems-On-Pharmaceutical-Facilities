@@ -11,7 +11,7 @@
   var SIMS = [
     { file: "heat-recovery.html", name: "Heat recovery unit" },
     { file: "ahu.html", name: "Air handling unit" },
-    { file: "heat-pump-ahu.html", name: "AHU + heat pump" }
+    { file: "heat-pump-ahu.html", name: "AHU + air pump" }
   ];
   var embedded = false;
   try { embedded = window.self !== window.top; } catch (e) { embedded = true; }

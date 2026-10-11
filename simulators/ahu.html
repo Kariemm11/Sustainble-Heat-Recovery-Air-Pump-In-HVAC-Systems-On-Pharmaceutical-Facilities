@@ -139,7 +139,7 @@ input[type=range]{width:100%;accent-color:var(--fresh);margin:0}
 
     <div class="legend">
       <h1>Air handling unit</h1>
-      <p class="sub">Mixing-box AHU · 5 000 m³/h · 70 % outdoor air · H13 HEPA · heat pump coils</p>
+      <p class="sub">Mixing-box AHU · 5 000 m³/h · 70 % outdoor air · H13 HEPA · air pump coils</p>
       <div class="keys">
         <div class="key"><span class="sw" style="background:var(--fresh)"></span><b>Outdoor / fresh air</b></div>
         <div class="key"><span class="sw" style="background:var(--return)"></span><b>Return / exhaust air</b></div>
@@ -540,13 +540,13 @@ var coilPreheat = coil(-0.9, YS, 'preheat');
 var coilCooling = coil( 1.9, YS, 'cooling');
 var coilReheat  = coil( 3.8, YS, 'reheat');
 var coilExtract = coil(-7.9, YE, 'extract');
-var lblPre ={text:'Pre-heat coil', sub:'heat pump condenser',
+var lblPre ={text:'Pre-heat coil', sub:'air pump condenser',
   anchor:new THREE.Vector3(-0.9,YS,0), off:new THREE.Vector3(-1.4,-1.9,1.4)};
 var lblCool={text:'Cooling coil', sub:'idle in heating mode',
   anchor:new THREE.Vector3(1.9,YS,0), off:new THREE.Vector3(0.1,-2.3,1.4)};
 var lblRe  ={text:'Reheat coil', sub:'idle in heating mode',
   anchor:new THREE.Vector3(3.8,YS,0), off:new THREE.Vector3(1.6,-1.9,1.4)};
-var lblExt ={text:'Exhaust-air coil', sub:'heat pump evaporator',
+var lblExt ={text:'Exhaust-air coil', sub:'air pump evaporator',
   anchor:new THREE.Vector3(-7.9,YE,0), off:new THREE.Vector3(-0.6,1.7,1.4)};
 labels.push(lblPre,lblCool,lblRe,lblExt);
 
@@ -996,17 +996,17 @@ var P0=JSON.parse(JSON.stringify(P));
 var MODE={
   winter:{
     coils:{preheat:'hot',cooling:'idle',reheat:'idle',extract:'cold'},
-    lbl:{preheat:['Pre-heat coil','heat pump condenser'],
+    lbl:{preheat:['Pre-heat coil','air pump condenser'],
          cooling:['Cooling coil','idle in heating mode'],
          reheat:['Reheat coil','idle in heating mode'],
-         extract:['Exhaust-air coil','heat pump evaporator']},
+         extract:['Exhaust-air coil','air pump evaporator']},
     dir:1},
   summer:{
     coils:{preheat:'idle',cooling:'cold',reheat:'hot',extract:'hot'},
     lbl:{preheat:['Pre-heat coil','idle in cooling mode'],
-         cooling:['Cooling coil','heat pump evaporator'],
+         cooling:['Cooling coil','air pump evaporator'],
          reheat:['Reheat coil','desuperheater condenser'],
-         extract:['Exhaust-air coil','heat pump condenser']},
+         extract:['Exhaust-air coil','air pump condenser']},
     dir:-1}
 };
 
@@ -1035,7 +1035,7 @@ function compute(season){
           ['r','Return air',s.room,'from the rooms'],
           ['r','After recovery',T2,dK(T2-s.room)+' given up'],
           ['r','Exhaust air',Texh,dK(Texh-T2)+' to the evaporator']],
-      kpi:[['Free recovered heat',kw(Qfree)],['Heat pump output',kw(Qpre)],
+      kpi:[['Free recovered heat',kw(Qfree)],['Air pump output',kw(Qpre)],
            ['Compressor input',kw(W)],['Heating COP',COP.toFixed(1)]]};
   }
   var U1=s.oat-e*(s.oat-s.room);

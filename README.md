@@ -8,9 +8,9 @@ Department of Pharmaceutical Engineering, German International University (GIU)
 
 | Simulator | Direct link |
 |---|---|
-| Heat recovery heat-pump unit | [`simulators/heat-recovery.html`](https://kariemm11.github.io/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities/simulators/heat-recovery.html) |
+| Heat recovery air-pump unit | [`simulators/heat-recovery.html`](https://kariemm11.github.io/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities/simulators/heat-recovery.html) |
 | Air handling unit (AHU) | [`simulators/ahu.html`](https://kariemm11.github.io/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities/simulators/ahu.html) |
-| AHU + heat recovery heat pump | [`simulators/heat-pump-ahu.html`](https://kariemm11.github.io/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities/simulators/heat-pump-ahu.html) |
+| AHU + heat recovery air pump | [`simulators/heat-pump-ahu.html`](https://kariemm11.github.io/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities/simulators/heat-pump-ahu.html) |
 
 ## What's inside
 - **Project website** (`index.html`): 3D animated hero, an interactive system diagram (winter and summer), the three simulators in one viewer, a quick heat-recovery calculator, QR codes, and credits.

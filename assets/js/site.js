@@ -3,7 +3,7 @@
   "use strict";
 
   var CANON = "https://kariemm11.github.io/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities/";
-  var SIM_NAMES = { "heat-recovery": "Heat recovery unit", "ahu": "Air handling unit", "heat-pump-ahu": "AHU + heat pump" };
+  var SIM_NAMES = { "heat-recovery": "Heat recovery unit", "ahu": "Air handling unit", "heat-pump-ahu": "AHU + air pump" };
   var root = document.documentElement, body = document.body;
   var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fine = window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -359,7 +359,7 @@
         steps: [
           "Cold outdoor air (−2 °C design) enters through the outdoor-air damper and a coarse panel filter that protects the core.",
           "In the crossflow plate core the warm exhaust gives up heat through thin aluminium plates. At 60 % effectiveness the fresh air is warmed to about 12 °C — with no air contact, so no cross-contamination.",
-          "The R32 heat pump's evaporator sits in the exhaust downstream of the core and harvests the heat still left in it, cooling the exhaust a further ~10 K before it leaves.",
+          "The R32 air pump's evaporator sits in the exhaust downstream of the core and harvests the heat still left in it, cooling the exhaust a further ~10 K before it leaves.",
           "The compressor lifts that heat to a useful temperature and the condenser coil in the AHU releases it into the supply, bringing the fresh air up to the 22 °C set point.",
           "Final H13 HEPA filters clean the conditioned air before it enters the GMP area. Room exhaust returns to the unit and the cycle repeats."
         ] },
@@ -367,7 +367,7 @@
         steps: [
           "Hot outdoor air (35 °C design) enters through the outdoor-air damper and the panel filter.",
           "The cooler room exhaust pre-cools the incoming air through the plates: at 60 % effectiveness it drops to about 28 °C before any mechanical cooling is used.",
-          "The reversing valve swaps the coils: the exhaust-side coil now acts as the condenser, rejecting the heat pump's heat into the already-cool exhaust instead of hot outdoor air.",
+          "The reversing valve swaps the coils: the exhaust-side coil now acts as the condenser, rejecting the air pump's heat into the already-cool exhaust instead of hot outdoor air.",
           "The AHU-side coil becomes the evaporator and cools (and dehumidifies) the supply air to the 16 °C supply set point.",
           "H13 HEPA filters deliver clean, cool air into the cleanroom while the pressure cascade is maintained."
         ] }

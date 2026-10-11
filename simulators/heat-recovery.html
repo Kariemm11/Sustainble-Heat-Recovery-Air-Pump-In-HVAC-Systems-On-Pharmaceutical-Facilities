@@ -132,7 +132,7 @@ input[type=range]{width:100%;accent-color:var(--fresh);margin:0}
     <canvas id="scene"></canvas>
 
     <div class="legend">
-      <h1>Heat recovery heat-pump unit</h1>
+      <h1>Heat recovery air-pump unit</h1>
       <p class="sub">Crossflow core · 3 500 m³/h · fully separated airstreams · R32 circuit</p>
       <div class="keys">
         <div class="key"><span class="sw" style="background:var(--fresh)"></span><b>Fresh outdoor air</b></div>
@@ -197,7 +197,7 @@ input[type=range]{width:100%;accent-color:var(--fresh);margin:0}
         <div class="checks">
           <label class="chk"><input type="checkbox" id="cbRibbon" checked> Coloured air columns</label>
           <label class="chk"><input type="checkbox" id="cbArrows" checked> Flow arrows</label>
-          <label class="chk"><input type="checkbox" id="cbRefrig" checked> Heat pump circuit</label>
+          <label class="chk"><input type="checkbox" id="cbRefrig" checked> Air pump circuit</label>
           <label class="chk"><input type="checkbox" id="cbWall" checked> Indoor / outdoor wall</label>
           <label class="chk"><input type="checkbox" id="cbSpin" checked> Fans turning</label>
         </div>
@@ -402,7 +402,7 @@ function fan(x,z,dirSign,label,sub){
 fan(-3.9, ZE, -1, 'Fresh-air fan', 'warmed air to the building');
 fan( 3.9, ZE,  1, 'Exhaust fan',   'stale air to outdoors');
 
-/* -------------------------------------------------- heat pump equipment */
+/* -------------------------------------------------- air pump equipment */
 var hpCoil=new THREE.Group();
 (function(){
   var fins=new THREE.InstancedMesh(new THREE.BoxGeometry(0.70,1.55,0.02),M.fin,22);
@@ -420,7 +420,7 @@ var hpCoil=new THREE.Group();
   explodables.push({obj:hpCoil,dir:new THREE.Vector3(0,1,-0.4).normalize(),
     base:new THREE.Vector3(2.4,CY,ZE),scale:2.4});
 })();
-var lblCoil={text:'Heat pump evaporator',sub:'harvests the last of the exhaust heat',
+var lblCoil={text:'Air pump evaporator',sub:'harvests the last of the exhaust heat',
   anchor:new THREE.Vector3(2.4,CY,ZE),off:new THREE.Vector3(0.4,1.4,-0.6)};
 labels.push(lblCoil);
 
@@ -698,8 +698,8 @@ var P={ flow:3500, eff:60,
 var P0=JSON.parse(JSON.stringify(P));
 
 var MODE={
-  winter:{coil:'cold', lbl:['Heat pump evaporator','harvests the last of the exhaust heat'], dir:1},
-  summer:{coil:'hot',  lbl:['Heat pump condenser','rejects heat into the exhaust'],          dir:-1}
+  winter:{coil:'cold', lbl:['Air pump evaporator','harvests the last of the exhaust heat'], dir:1},
+  summer:{coil:'hot',  lbl:['Air pump condenser','rejects heat into the exhaust'],          dir:-1}
 };
 
 function kw(v){ return (Math.round(v*10)/10).toFixed(1)+' kW'; }

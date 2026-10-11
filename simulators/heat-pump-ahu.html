@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Heat Pump AHU Simulator</title>
+<title>Air Pump AHU Simulator</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
@@ -137,7 +137,7 @@ input[type=range]{width:100%;accent-color:var(--fresh);margin:0}
     <canvas id="scene"></canvas>
 
     <div class="legend">
-      <h1>AHU + heat-recovery heat-pump unit</h1>
+      <h1>AHU + heat-recovery air-pump unit</h1>
       <p class="sub">Two units in parallel on one R32 circuit · 5 000 m³/h · 70 % outdoor air · H13 HEPA</p>
       <div class="keys">
         <div class="key"><span class="sw" style="background:var(--fresh)"></span><b>Outdoor / fresh air</b></div>
@@ -332,7 +332,7 @@ var X0=-L/2, X1=L/2, Y0=-H/2, Y1=H/2, Z0=-D/2, Z1=D/2;
 var YS=-1.12, YE=1.12;          // supply deck / extract deck centre lines
 var MIXX=-3.4;                  // where return air drops into the mixing box
 
-/* the parallel heat-recovery heat-pump unit, standing behind the AHU */
+/* the parallel heat-recovery air-pump unit, standing behind the AHU */
 var MX0=-20.5, MX1=-9.0, MXC=(MX0+MX1)/2;
 var MY=-0.6, MZ=-8.5, MH=2.6, MD=3.2;
 var MZU=MZ+0.85, MZL=MZ-0.85;   // the two lanes that cross inside the core
@@ -546,13 +546,13 @@ var coilPreheat = coil(-0.9, YS, 'preheat');
 var coilCooling = coil( 1.9, YS, 'cooling');
 var coilReheat  = coil( 3.8, YS, 'reheat');
 var coilExtract = coil(-17.3, MY, 'extract', MZL, 0.52);  // lives in the recovery unit
-var lblPre ={text:'Pre-heat coil', sub:'heat pump condenser',
+var lblPre ={text:'Pre-heat coil', sub:'air pump condenser',
   anchor:new THREE.Vector3(-0.9,YS,0), off:new THREE.Vector3(-1.4,-1.9,1.4)};
 var lblCool={text:'Cooling coil', sub:'idle in heating mode',
   anchor:new THREE.Vector3(1.9,YS,0), off:new THREE.Vector3(0.1,-2.3,1.4)};
 var lblRe  ={text:'Reheat coil', sub:'idle in heating mode',
   anchor:new THREE.Vector3(3.8,YS,0), off:new THREE.Vector3(1.6,-1.9,1.4)};
-var lblExt ={text:'Exhaust-air coil', sub:'heat pump evaporator',
+var lblExt ={text:'Exhaust-air coil', sub:'air pump evaporator',
   anchor:new THREE.Vector3(-17.3,MY,MZL), off:new THREE.Vector3(-0.8,1.9,-0.8)};
 labels.push(lblPre,lblCool,lblRe,lblExt);
 
@@ -737,7 +737,7 @@ sensor(-4.3, YE+0.85, -0.75,'Frost thermostat', 'exhaust side of core');
     .forEach(function(s){ door(s[0],YS,s[1]); door(s[0],YE,s[1]); });
 })();
 
-/* ============ parallel heat-recovery heat-pump unit (the HRV package) === */
+/* ============ parallel heat-recovery air-pump unit (the HRV package) === */
 var modUnit=new THREE.Group(); scene.add(modUnit);
 modUnit.add(coilExtract);                       // the evaporator sits in its exhaust lane
 (function(){
@@ -823,7 +823,7 @@ modUnit.add(coilExtract);                       // the evaporator sits in its ex
     modUnit.add(at(box(1.0,MH-0.6,1.5,M.duct),p[0],MY,p[1]));
   });
 
-  labels.push({text:'Heat-recovery heat-pump unit',sub:'runs in parallel with the AHU',
+  labels.push({text:'Heat-recovery air-pump unit',sub:'runs in parallel with the AHU',
     anchor:new THREE.Vector3(MXC,MY+MH/2,MZ),off:new THREE.Vector3(-3.4,2.9,-1.2)});
 })();
 
@@ -1117,17 +1117,17 @@ var P0=JSON.parse(JSON.stringify(P));
 var MODE={
   winter:{
     coils:{preheat:'hot',cooling:'idle',reheat:'idle',extract:'cold'},
-    lbl:{preheat:['Pre-heat coil','heat pump condenser'],
+    lbl:{preheat:['Pre-heat coil','air pump condenser'],
          cooling:['Cooling coil','idle in heating mode'],
          reheat:['Reheat coil','idle in heating mode'],
-         extract:['Exhaust-air coil','heat pump evaporator']},
+         extract:['Exhaust-air coil','air pump evaporator']},
     dir:1},
   summer:{
     coils:{preheat:'idle',cooling:'cold',reheat:'hot',extract:'hot'},
     lbl:{preheat:['Pre-heat coil','idle in cooling mode'],
-         cooling:['Cooling coil','heat pump evaporator'],
+         cooling:['Cooling coil','air pump evaporator'],
          reheat:['Reheat coil','desuperheater condenser'],
-         extract:['Exhaust-air coil','heat pump condenser']},
+         extract:['Exhaust-air coil','air pump condenser']},
     dir:-1}
 };
 
@@ -1167,7 +1167,7 @@ function compute(season){
           ['r','After AHU core',c.R1,dK(c.R1-s.room)+' given up'],
           ['r','After recovery unit',c.R2,dK(c.R2-c.R1)+' given up'],
           ['r','Exhaust air',Texh,dK(Texh-c.R2)+' to the evaporator']],
-      kpi:[['Free recovered heat',kw(Qfree)],['Heat pump output',kw(Qpre)],
+      kpi:[['Free recovered heat',kw(Qfree)],['Air pump output',kw(Qpre)],
            ['Compressor input',kw(W)],['Heating COP',COP.toFixed(1)],
            ['Overall recovery',(100*(c.T2-s.oat)/Math.max(s.room-s.oat,0.1)).toFixed(0)+' %']]};
   }
