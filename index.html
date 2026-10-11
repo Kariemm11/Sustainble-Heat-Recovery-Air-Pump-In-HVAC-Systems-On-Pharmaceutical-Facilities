@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Heat Recovery HVAC · GIU</title>
+<meta name="description" content="Sustainable heat recovery heat pump in HVAC systems of pharmaceutical facilities — interactive 3D simulators. Eng. Kariem Moussa, supervised by Dr. Eng. Ahmed Maher, Pharmaceutical Engineering, German International University.">
+<meta name="theme-color" content="#060a10">
+<meta property="og:title" content="Sustainable Heat Recovery in Pharmaceutical HVAC">
+<meta property="og:description" content="Three interactive 3D simulators: heat recovery unit, air handling unit, and the combined AHU + heat pump system.">
+<meta property="og:image" content="assets/img/og.png">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("hr-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<!-- ============================================================ preloader -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="pl-inner">
+    <svg class="pl-mark" viewBox="0 0 64 64" aria-hidden="true">
+      <rect class="pl-d" x="18" y="18" width="28" height="28" rx="3" transform="rotate(45 32 32)"/>
+      <path class="pl-f" d="M4 26 H60"/><path class="pl-e" d="M4 38 H60"/>
+    </svg>
+    <div class="pl-text">German International University · Pharmaceutical Engineering</div>
+    <div class="pl-bar"><span id="plBar"></span></div>
+  </div>
+</div>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="wipe" id="wipe" aria-hidden="true"></div>
+
+<!-- ================================================================== nav -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Back to top">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="18" y="18" width="28" height="28" rx="3" transform="rotate(45 32 32)"/><path class="f" d="M6 27 H58"/><path class="e" d="M6 37 H58"/></svg>
+    <span><b>HR·HVAC</b><small>GIU Pharma Eng.</small></span>
+  </a>
+  <nav class="links" id="links" aria-label="Sections">
+    <a href="#challenge">Challenge</a>
+    <a href="#system">How it works</a>
+    <a href="#simulators">Simulators</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#access">QR access</a>
+    <a href="#team">Team</a>
+  </nav>
+  <div class="nav-actions">
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">
+      <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+    <a class="btn btn-sm magnetic" href="#simulators">Launch 3D</a>
+    <button class="icon-btn burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="links"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================================================================= hero -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="eyebrow reveal"><span class="dot"></span>Graduation research project · German International University</p>
+    <h1 class="hero-title" id="heroTitle">
+      <span class="line"><span>Sustainable</span> <span>Heat</span> <span>Recovery</span></span>
+      <span class="line accent"><span>Heat</span> <span>Pump</span> <span>in</span> <span>HVAC</span></span>
+      <span class="line small"><span>Systems</span> <span>of</span> <span>Pharmaceutical</span> <span>Facilities</span></span>
+    </h1>
+    <p class="lede reveal" style="--d:.9s">Recovering the energy that cleanroom exhaust air carries away — a crossflow plate core and an R32 heat pump working together, explored through three interactive 3D simulators.</p>
+    <div class="hero-cta reveal" style="--d:1.05s">
+      <a class="btn btn-primary magnetic" href="#simulators">
+        <span>Explore the simulators</span>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost magnetic" href="#access">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 20h1M17 20h1"/></svg>
+        <span>Scan the QR code</span>
+      </a>
+    </div>
+    <dl class="credits reveal" style="--d:1.2s">
+      <div><dt>Prepared by</dt><dd>Eng. Kariem Moussa</dd></div>
+      <div><dt>Supervised by</dt><dd>Dr. Eng. Ahmed Maher</dd></div>
+      <div><dt>Department</dt><dd>Pharmaceutical Engineering · GIU</dd></div>
+    </dl>
+  </div>
+  <div class="hero-legend reveal" style="--d:1.4s" aria-hidden="true">
+    <span><i style="background:var(--fresh)"></i>Fresh outdoor air</span>
+    <span><i style="background:var(--exhaust)"></i>Exhaust air</span>
+    <span><i style="background:var(--refrig)"></i>Refrigerant</span>
+  </div>
+  <a class="scroll-cue" href="#challenge" aria-label="Scroll to content"><span></span></a>
+</section>
+
+<!-- ============================================================== marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Heat recovery</span><b>◆</b><span>R32 heat pump</span><b>◆</b><span>Crossflow plate core</span><b>◆</b><span>H13 HEPA filtration</span><b>◆</b><span>GMP cleanrooms</span><b>◆</b><span>Energy efficiency</span><b>◆</b><span>Decarbonisation</span><b>◆</b>
+    <span>Heat recovery</span><b>◆</b><span>R32 heat pump</span><b>◆</b><span>Crossflow plate core</span><b>◆</b><span>H13 HEPA filtration</span><b>◆</b><span>GMP cleanrooms</span><b>◆</b><span>Energy efficiency</span><b>◆</b><span>Decarbonisation</span><b>◆</b>
+  </div>
+</div>
+
+<!-- ================================================================ stats -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><div class="num"><span data-count="5000" data-sep="1">0</span><small>m³/h</small></div><p>Design airflow of the air handling unit</p></div>
+    <div class="stat reveal" style="--d:.08s"><div class="num"><span data-count="70">0</span><small>%</small></div><p>Outdoor air fraction in the supply</p></div>
+    <div class="stat reveal" style="--d:.16s"><div class="num"><span data-count="3">0</span><small>sims</small></div><p>Interactive 3D models with live air-state calculations</p></div>
+    <div class="stat reveal" style="--d:.24s"><div class="num"><span data-count="0">0</span><small>contact</small></div><p>Between fresh and exhaust streams — plates separate them fully</p></div>
+  </div>
+</section>
+
+<!-- ============================================================ challenge -->
+<section class="section" id="challenge">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker reveal">01 — The challenge</p>
+      <h2 class="reveal" style="--d:.06s">Pharmaceutical air is expensive air.</h2>
+      <p class="reveal" style="--d:.12s">GMP production areas need clean, tightly controlled, often once-through air. Every cubic metre is filtered, heated or cooled, then exhausted — taking its conditioning energy with it.</p>
+    </header>
+    <div class="cards4">
+      <article class="card tilt reveal">
+        <div class="card-ic"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></div>
+        <h3>High air-change rates</h3>
+        <p>Cleanrooms are flushed many times per hour to dilute and remove particles, so fans and coils move far more air than in ordinary buildings.</p>
+      </article>
+      <article class="card tilt reveal" style="--d:.08s">
+        <div class="card-ic"><svg viewBox="0 0 24 24"><path d="M4 8h12a3 3 0 1 0-3-3M4 12h16M4 16h10a3 3 0 1 1-3 3"/></svg></div>
+        <h3>Large outdoor-air fractions</h3>
+        <p>To avoid cross-contamination much of the return air cannot be recirculated, so fresh outdoor air must be conditioned from the outdoor state every time.</p>
+      </article>
+      <article class="card tilt reveal" style="--d:.16s">
+        <div class="card-ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M4 14h16M9 4v16M14 4v16"/></svg></div>
+        <h3>HEPA & pressure cascades</h3>
+        <p>Terminal H13 filtration and room-to-room pressure differentials add fan pressure and rule out any leak path between supply and exhaust.</p>
+      </article>
+      <article class="card tilt reveal" style="--d:.24s">
+        <div class="card-ic"><svg viewBox="0 0 24 24"><path d="M14 14.8V4a2 2 0 1 0-4 0v10.8a4 4 0 1 0 4 0z"/></svg></div>
+        <h3>Tight T & RH control</h3>
+        <p>Products and processes demand stable temperature and humidity all year, so the plant heats hard in winter and cools hard in summer.</p>
+      </article>
+    </div>
+
+    <div class="insight reveal">
+      <div class="insight-txt">
+        <p class="kicker">The opportunity</p>
+        <h3>The exhaust stream is a heat source that is already paid for.</h3>
+        <p>Air leaving the building is at room conditions. A plate heat exchanger transfers that energy to the incoming air without the two streams ever touching, and a heat pump then lifts the remaining exhaust heat to a useful supply temperature.</p>
+      </div>
+      <div class="insight-viz" aria-hidden="true">
+        <div class="thermo"><span class="t-cold">Outdoor</span><span class="t-mid">After core</span><span class="t-hot">Supply</span><div class="t-bar"><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== system -->
+<section class="section alt" id="system">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker reveal">02 — How it works</p>
+      <h2 class="reveal" style="--d:.06s">Two stages of recovery, one airtight path.</h2>
+      <p class="reveal" style="--d:.12s">Select a stage to follow the air through the system. Switch between winter heating and summer cooling — the heat pump reverses with the season.</p>
+    </header>
+
+    <div class="sys reveal">
+      <div class="sys-top">
+        <div class="seg" id="sysSeason" role="group" aria-label="Season">
+          <button type="button" data-v="winter" aria-pressed="true">Winter heating</button>
+          <button type="button" data-v="summer" aria-pressed="false">Summer cooling</button>
+        </div>
+        <span class="sys-hint">Click a numbered stage</span>
+      </div>
+      <div class="sys-body">
+        <div class="sys-diagram">
+          <svg viewBox="0 0 760 380" id="sysSvg" role="img" aria-label="Schematic of the heat recovery system">
+            <defs>
+              <marker id="arF" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="mk-f"/></marker>
+              <marker id="arE" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="mk-e"/></marker>
+            </defs>
+            <!-- building -->
+            <rect class="s-bldg" x="18" y="40" width="190" height="300" rx="10"/>
+            <text class="s-cap" x="113" y="66" text-anchor="middle">CLEANROOM</text>
+            <text class="s-sub" x="113" y="84" text-anchor="middle">GMP grade area</text>
+            <!-- unit housing -->
+            <rect class="s-unit" x="250" y="40" width="380" height="300" rx="10"/>
+            <path class="s-div" d="M250 190 H372 M508 190 H630"/>
+            <!-- duct flows -->
+            <path class="flow f" d="M740 110 H520 Q476 110 440 178 Q404 110 360 110 H140" marker-end="url(#arF)"/>
+            <path class="flow e" d="M140 270 H360 Q404 270 440 202 Q476 270 520 270 H740" marker-end="url(#arE)"/>
+            <!-- core -->
+            <g class="s-core" data-step="2">
+              <rect x="400" y="150" width="80" height="80" rx="4" transform="rotate(45 440 190)"/>
+              <path d="M412 168 L468 212 M412 212 L468 168" />
+            </g>
+            <!-- filter -->
+            <g class="s-filter" data-step="1"><rect x="586" y="82" width="14" height="56" rx="2"/><path d="M588 90h10M588 100h10M588 110h10M588 120h10M588 130h10"/></g>
+            <!-- coils -->
+            <rect class="s-coil cond" data-step="4" x="292" y="84" width="22" height="52" rx="3"/>
+            <rect class="s-coil evap" data-step="3" x="566" y="244" width="22" height="52" rx="3"/>
+            <!-- HEPA -->
+            <g class="s-hepa" data-step="5"><rect x="168" y="84" width="16" height="52" rx="2"/><path d="M170 92h12M170 100h12M170 108h12M170 116h12M170 124h12"/></g>
+            <!-- refrigerant loop -->
+            <path class="refrig" d="M577 296 V340 H303 V136"/>
+            <circle class="s-comp" cx="440" cy="340" r="15"/>
+            <text class="s-mini" x="440" y="344" text-anchor="middle">C</text>
+            <!-- labels -->
+            <text class="s-lbl" x="700" y="98" text-anchor="middle">OUTDOOR AIR</text>
+            <text class="s-lbl" x="700" y="252" text-anchor="middle">EXHAUST</text>
+            <text class="s-sub" x="440" y="364" text-anchor="middle">R32 compressor</text>
+            <!-- step badges -->
+            <g class="badge" data-step="1" transform="translate(593 60)"><circle r="14"/><text y="5" text-anchor="middle">1</text></g>
+            <g class="badge" data-step="2" transform="translate(440 128)"><circle r="14"/><text y="5" text-anchor="middle">2</text></g>
+            <g class="badge" data-step="3" transform="translate(577 222)"><circle r="14"/><text y="5" text-anchor="middle">3</text></g>
+            <g class="badge" data-step="4" transform="translate(303 62)"><circle r="14"/><text y="5" text-anchor="middle">4</text></g>
+            <g class="badge" data-step="5" transform="translate(176 62)"><circle r="14"/><text y="5" text-anchor="middle">5</text></g>
+            <!-- temperatures -->
+            <text class="s-temp f" id="tq1" x="680" y="132" text-anchor="middle">−2 °C</text>
+            <text class="s-temp f" id="tq2" x="350" y="98" text-anchor="middle">13 °C</text>
+            <text class="s-temp f" id="tq3" x="232" y="132" text-anchor="middle">22 °C</text>
+            <text class="s-temp e" id="tq4" x="232" y="262" text-anchor="middle">22 °C</text>
+            <text class="s-temp e" id="tq5" x="520" y="298" text-anchor="middle">8 °C</text>
+            <text class="s-temp e" id="tq6" x="690" y="296" text-anchor="middle">−2 °C</text>
+          </svg>
+        </div>
+        <ol class="steps" id="steps">
+          <li data-step="1" class="on"><button type="button"><b>1</b><span>Intake & filtration</span></button><p></p></li>
+          <li data-step="2"><button type="button"><b>2</b><span>Plate heat-exchange core</span></button><p></p></li>
+          <li data-step="3"><button type="button"><b>3</b><span>Exhaust-side heat-pump coil</span></button><p></p></li>
+          <li data-step="4"><button type="button"><b>4</b><span>Supply-side heat-pump coil</span></button><p></p></li>
+          <li data-step="5"><button type="button"><b>5</b><span>HEPA supply to the cleanroom</span></button><p></p></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== simulators -->
+<section class="section" id="simulators">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker reveal">03 — Interactive 3D simulators</p>
+      <h2 class="reveal" style="--d:.06s">Three models. Every variable is yours to change.</h2>
+      <p class="reveal" style="--d:.12s">Orbit, zoom, explode the casing and edit the design values — airflow, recovery efficiency, outdoor and room temperatures. Every model recalculates its air states live, and any setup can be shared as a link or QR code.</p>
+    </header>
+
+    <div class="sims">
+      <article class="sim reveal" data-sim="heat-recovery">
+        <div class="sim-media tilt">
+          <img src="assets/img/sim-heat-recovery.jpg" alt="3D model of the heat recovery heat-pump unit" loading="lazy" width="1200" height="750">
+          <span class="sim-tag">Model A</span>
+          <div class="sim-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="sim-body">
+          <h3>Heat recovery heat-pump unit</h3>
+          <p>The standalone recovery unit: crossflow plate core, two filters, two fans and an R32 evaporator that harvests the last of the exhaust heat.</p>
+          <ul class="chips"><li>3 500 m³/h</li><li>Crossflow core</li><li>R32 circuit</li></ul>
+          <div class="sim-acts">
+            <button class="btn btn-primary btn-sm" data-launch="heat-recovery">Launch here</button>
+            <a class="btn btn-ghost btn-sm" href="simulators/heat-recovery.html" data-transition>Full screen ↗</a>
+            <button class="btn btn-icon" data-qr="heat-recovery" aria-label="QR code for this simulator"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 20h1"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="sim reveal" style="--d:.08s" data-sim="ahu">
+        <div class="sim-media tilt">
+          <img src="assets/img/sim-ahu.jpg" alt="3D model of the air handling unit" loading="lazy" width="1200" height="750">
+          <span class="sim-tag">Model B</span>
+          <div class="sim-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="sim-body">
+          <h3>Air handling unit</h3>
+          <p>The pharmaceutical AHU on its own: mixing box, plate core or thermal wheel, heat-pump coils, supply fan and H13 HEPA filtration.</p>
+          <ul class="chips"><li>5 000 m³/h</li><li>70 % outdoor air</li><li>H13 HEPA</li></ul>
+          <div class="sim-acts">
+            <button class="btn btn-primary btn-sm" data-launch="ahu">Launch here</button>
+            <a class="btn btn-ghost btn-sm" href="simulators/ahu.html" data-transition>Full screen ↗</a>
+            <button class="btn btn-icon" data-qr="ahu" aria-label="QR code for this simulator"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 20h1"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="sim reveal" style="--d:.16s" data-sim="heat-pump-ahu">
+        <div class="sim-media tilt">
+          <img src="assets/img/sim-heat-pump-ahu.jpg" alt="3D model of the AHU working with the heat recovery heat-pump unit" loading="lazy" width="1200" height="750">
+          <span class="sim-tag hot">Model C · Combined</span>
+          <div class="sim-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="sim-body">
+          <h3>AHU + heat recovery heat pump</h3>
+          <p>The complete proposal: both units in parallel on one R32 circuit, with the recovery unit's efficiency and the AHU core efficiency set separately.</p>
+          <ul class="chips"><li>Two units</li><li>One R32 circuit</li><li>Winter & summer</li></ul>
+          <div class="sim-acts">
+            <button class="btn btn-primary btn-sm" data-launch="heat-pump-ahu">Launch here</button>
+            <a class="btn btn-ghost btn-sm" href="simulators/heat-pump-ahu.html" data-transition>Full screen ↗</a>
+            <button class="btn btn-icon" data-qr="heat-pump-ahu" aria-label="QR code for this simulator"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 20h1"/></svg></button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="howto reveal">
+      <div><b>Drag</b><span>to orbit</span></div>
+      <div><b>Scroll / pinch</b><span>to zoom</span></div>
+      <div><b>Shift + drag</b><span>to pan</span></div>
+      <div><b>Design values</b><span>edit to recalculate</span></div>
+      <div><b>Share / QR</b><span>send your exact setup</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== calculator -->
+<section class="section alt" id="calculator">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker reveal">04 — Quick calculator</p>
+      <h2 class="reveal" style="--d:.06s">What does the plate core recover?</h2>
+      <p class="reveal" style="--d:.12s">Sensible heat recovered by the core, using the same relation as the simulators: Q = V̇ · ρ · c<sub>p</sub> · ε · (T<sub>room</sub> − T<sub>out</sub>), with ρ = 1.2 kg/m³ and c<sub>p</sub> = 1.006 kJ/kg·K.</p>
+    </header>
+
+    <div class="calc reveal">
+      <form class="calc-in" id="calcForm" onsubmit="return false">
+        <div class="field">
+          <div class="f-row"><label for="cFlow">Airflow</label><output id="oFlow">3 500 m³/h</output></div>
+          <input type="range" id="cFlow" min="300" max="25000" step="100" value="3500">
+        </div>
+        <div class="field">
+          <div class="f-row"><label for="cEff">Recovery efficiency</label><output id="oEff">60 %</output></div>
+          <input type="range" id="cEff" min="0" max="95" step="1" value="60">
+        </div>
+        <div class="field">
+          <div class="f-row"><label for="cOat">Outdoor temperature</label><output id="oOat">−2.0 °C</output></div>
+          <input type="range" id="cOat" min="-30" max="55" step="0.5" value="-2">
+        </div>
+        <div class="field">
+          <div class="f-row"><label for="cRoom">Room / exhaust temperature</label><output id="oRoom">22.0 °C</output></div>
+          <input type="range" id="cRoom" min="5" max="40" step="0.5" value="22">
+        </div>
+        <div class="field">
+          <div class="f-row"><label for="cHours">Hours per year at this condition</label><output id="oHours">2 000 h</output></div>
+          <input type="range" id="cHours" min="0" max="8760" step="10" value="2000">
+        </div>
+        <div class="calc-btns">
+          <button type="button" class="btn btn-ghost btn-sm" id="calcReset">Reset</button>
+          <a class="btn btn-primary btn-sm magnetic" id="calcOpen" href="simulators/heat-recovery.html" data-transition>Open this case in 3D ↗</a>
+        </div>
+      </form>
+
+      <div class="calc-out">
+        <div class="gauge">
+          <svg viewBox="0 0 200 120" aria-hidden="true">
+            <path class="g-track" d="M20 110 A80 80 0 0 1 180 110"/>
+            <path class="g-fill" id="gFill" d="M20 110 A80 80 0 0 1 180 110"/>
+          </svg>
+          <div class="g-val"><span id="rQ">0.0</span><small>kW recovered</small></div>
+        </div>
+        <div class="g-mode" id="rMode">Heating recovery</div>
+        <div class="tline" aria-label="Fresh air temperatures">
+          <div class="tl-row"><span>Outdoor</span><div class="tl-bar"><i id="b1"></i></div><b id="r1">−2.0 °C</b></div>
+          <div class="tl-row"><span>After core</span><div class="tl-bar"><i id="b2"></i></div><b id="r2">12.4 °C</b></div>
+          <div class="tl-row"><span>Room</span><div class="tl-bar"><i id="b3"></i></div><b id="r3">22.0 °C</b></div>
+        </div>
+        <div class="kpis">
+          <div><small>Temperature lift</small><b id="rLift">+14.4 K</b></div>
+          <div><small>Energy over the hours</small><b id="rE">0 MWh</b></div>
+        </div>
+        <p class="note">Sensible heat only, constant conditions. The heat pump stage adds to this — see the simulators for the full air-state train and COP.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== access -->
+<section class="section" id="access">
+  <div class="wrap access">
+    <div class="access-txt">
+      <p class="kicker reveal">05 — Take it with you</p>
+      <h2 class="reveal" style="--d:.06s">Scan. Open. Adjust the variables on your phone.</h2>
+      <p class="reveal" style="--d:.12s">Choose a destination and scan the code with any phone camera. The simulators are fully touch-ready: tap <b>Controls</b> to edit airflow, efficiencies and temperatures, and use <b>Share / QR</b> inside a simulator to pass your exact setup on.</p>
+      <div class="qr-tabs reveal" style="--d:.18s" id="qrTabs" role="tablist" aria-label="QR destination">
+        <button role="tab" aria-selected="true" data-t="">Project website</button>
+        <button role="tab" aria-selected="false" data-t="heat-recovery">Heat recovery unit</button>
+        <button role="tab" aria-selected="false" data-t="ahu">Air handling unit</button>
+        <button role="tab" aria-selected="false" data-t="heat-pump-ahu">AHU + heat pump</button>
+      </div>
+      <div class="qr-link reveal" style="--d:.24s">
+        <code id="qrUrl"></code>
+        <button type="button" class="btn btn-sm btn-ghost" id="qrCopy">Copy</button>
+      </div>
+      <div class="qr-acts reveal" style="--d:.3s">
+        <button type="button" class="btn btn-primary btn-sm" id="qrDl">Download QR (PNG)</button>
+        <a class="btn btn-ghost btn-sm" href="https://github.com/Kariemm11/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+    <div class="qr-stage reveal" style="--d:.1s">
+      <div class="qr-card tilt" id="qrCard">
+        <div class="qr-frame"><canvas id="qrCanvas" aria-label="QR code"></canvas><span class="scan" aria-hidden="true"></span></div>
+        <div class="qr-cap"><b id="qrName">Project website</b><span>Point your camera here</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================= team -->
+<section class="section alt" id="team">
+  <div class="wrap">
+    <header class="sec-head center">
+      <p class="kicker reveal">06 — The team</p>
+      <h2 class="reveal" style="--d:.06s">Research & supervision</h2>
+    </header>
+    <div class="team">
+      <article class="person tilt reveal">
+        <div class="avatar"><span>KM</span></div>
+        <p class="role">Prepared by</p>
+        <h3>Eng. Kariem Moussa</h3>
+        <p>Research, system design, 3D simulators and this website.</p>
+      </article>
+      <article class="person tilt reveal" style="--d:.1s">
+        <div class="avatar sup"><span>AM</span></div>
+        <p class="role">Under the supervision of</p>
+        <h3>Dr. Eng. Ahmed Maher</h3>
+        <p>Project supervisor.</p>
+      </article>
+      <article class="person tilt reveal" style="--d:.2s">
+        <div class="avatar inst"><span>GIU</span></div>
+        <p class="role">Institution</p>
+        <h3>German International University</h3>
+        <p>Department of Pharmaceutical Engineering.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <p class="foot-title">Sustainable Heat Recovery Heat Pump in HVAC Systems of Pharmaceutical Facilities</p>
+      <p>Done by <b>Eng. Kariem Moussa</b> under the supervision of <b>Dr. Eng. Ahmed Maher</b><br>Department of Pharmaceutical Engineering · German International University (GIU)</p>
+    </div>
+    <div class="foot-links">
+      <a href="simulators/heat-recovery.html" data-transition>Heat recovery unit</a>
+      <a href="simulators/ahu.html" data-transition>Air handling unit</a>
+      <a href="simulators/heat-pump-ahu.html" data-transition>AHU + heat pump</a>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+  <p class="wrap foot-copy">© <span id="year">2026</span> Kariem Moussa · German International University</p>
+</footer>
+
+<!-- ================================================================ viewer -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="3D simulator" hidden>
+  <div class="v-bar">
+    <div class="v-tabs" id="vTabs" role="tablist">
+      <button role="tab" data-v="heat-recovery">Heat recovery unit</button>
+      <button role="tab" data-v="ahu">Air handling unit</button>
+      <button role="tab" data-v="heat-pump-ahu">AHU + heat pump</button>
+    </div>
+    <div class="v-acts">
+      <button class="btn btn-sm btn-ghost" id="vShare" type="button">Share / QR</button>
+      <a class="btn btn-sm btn-ghost" id="vOpen" href="#" target="_blank" rel="noopener">New tab ↗</a>
+      <button class="icon-btn" id="vClose" type="button" aria-label="Close simulator"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="v-frame">
+    <div class="v-load" id="vLoad"><span></span><p>Loading 3D model…</p></div>
+    <iframe id="vIframe" title="3D simulator" allow="fullscreen; clipboard-write"></iframe>
+  </div>
+</div>
+
+<!-- ============================================================= QR modal -->
+<div class="qmodal" id="qmodal" role="dialog" aria-modal="true" aria-labelledby="qmTitle" hidden>
+  <div class="qm-card">
+    <h3 id="qmTitle">Scan to open</h3>
+    <p id="qmSub"></p>
+    <canvas id="qmCanvas"></canvas>
+    <code id="qmUrl"></code>
+    <div class="qm-acts">
+      <button class="btn btn-primary btn-sm" id="qmCopy" type="button">Copy link</button>
+      <button class="btn btn-ghost btn-sm" id="qmDl" type="button">Download</button>
+      <button class="btn btn-ghost btn-sm" id="qmClose" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/vendor/three.min.js"></script>
+<script src="assets/vendor/qrcode.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
