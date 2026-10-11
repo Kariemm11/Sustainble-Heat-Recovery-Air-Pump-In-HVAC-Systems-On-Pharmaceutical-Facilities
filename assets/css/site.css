@@ -476,3 +476,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
   *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none;filter:none}
 }
+
+/* keep grid children from stretching the page on phones */
+.access>*,.sys-body>*,.calc>*,.insight>*{min-width:0}
+html,body{overflow-x:clip}
