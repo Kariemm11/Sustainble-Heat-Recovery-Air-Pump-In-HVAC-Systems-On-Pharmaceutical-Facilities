@@ -315,8 +315,7 @@ body:not(.ready) .hero .reveal{opacity:0}
 .steps li.on p{grid-template-rows:1fr;padding-bottom:14px}
 
 /* ------------------------------------------------------------ simulators */
-.sims{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-@media (max-width:1020px){.sims{grid-template-columns:1fr 1fr}.sims .sim:last-child{grid-column:1/-1}}
+.sims{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 @media (max-width:680px){.sims{grid-template-columns:1fr}}
 .sim{display:flex;flex-direction:column;border-radius:calc(var(--r) + 4px);border:1px solid var(--line);background:var(--surface);overflow:hidden;
   transition:border-color .4s,box-shadow .5s var(--ease),transform .6s var(--ease)}
@@ -481,11 +480,6 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 .access>*,.sys-body>*,.calc>*,.insight>*{min-width:0}
 html,body{overflow-x:clip}
 
-/* clean-room test rig: full-width card under the three models */
-.sim-wide{grid-column:1/-1;display:grid;grid-template-columns:1.25fr 1fr;align-items:stretch}
-.sim-wide .sim-media{height:100%}
-.sim-wide .sim-media img{height:100%;object-fit:cover}
-@media (max-width:860px){.sim-wide{grid-template-columns:1fr}}
 /* contact */
 .foot-contact{padding-top:22px;margin-top:22px;border-top:1px solid var(--line)}
 .foot-contact p{margin:4px 0 12px}
