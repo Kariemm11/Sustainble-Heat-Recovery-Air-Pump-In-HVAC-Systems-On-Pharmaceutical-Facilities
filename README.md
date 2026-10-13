@@ -13,7 +13,7 @@ Department of Pharmaceutical Engineering, German International University (GIU)
 | AHU + heat recovery air pump | [`simulators/heat-pump-ahu.html`](https://kariemm11.github.io/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities/simulators/heat-pump-ahu.html) |
 
 ## What's inside
-- **Project website** (`index.html`): 3D animated hero, an interactive system diagram (winter and summer), the three simulators in one viewer, a quick heat-recovery calculator, QR codes, and credits.
+- **Project website** (`index.html`): 3D animated hero, an interactive system diagram (winter and summer), the three simulators and the clean-room test rig in one viewer, a quick heat-recovery calculator, QR codes, and credits.
 - **Three 3D simulators** (`simulators/`): orbit, zoom, explode view, and edit the design values (airflow, efficiencies, outdoor %, temperatures). Air states are recalculated live.
 - **QR codes and share links**: every simulator has a **Share / QR** button. The link stores the current settings, so a phone opens the same setup, and the variables can still be adjusted there.
 
@@ -31,3 +31,11 @@ simulators/heat-recovery.html?season=winter&flow=3500&eff=70&oat=-5&room=22
 3. After about a minute the site is live at the link above, and the QR codes on the site point to it.
 
 Everything is static: no build step and no server. Three.js and the QR library are in `assets/vendor/`.
+
+## Clean-room test rig
+
+The website also shows the **clean-room test rig** (Model D), which lives in its own repository: [Cleanroom-Heat-Recovery-Air-Pump](https://github.com/Kariemm11/Cleanroom-Heat-Recovery-Air-Pump) · live at https://kariemm11.github.io/Cleanroom-Heat-Recovery-Air-Pump/. It opens in the same viewer, with its own QR code.
+
+## Contact
+
+Eng. Kariem Moussa · [kareimmoussa@gmail.com](mailto:kareimmoussa@gmail.com)

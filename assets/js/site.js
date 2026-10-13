@@ -3,7 +3,9 @@
   "use strict";
 
   var CANON = "https://kariemm11.github.io/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities/";
-  var SIM_NAMES = { "heat-recovery": "Heat recovery unit", "ahu": "Air handling unit", "heat-pump-ahu": "AHU + air pump" };
+  var SIM_NAMES = { "heat-recovery": "Heat recovery unit", "ahu": "Air handling unit", "heat-pump-ahu": "AHU + air pump", "clean-room": "Clean-room test rig" };
+  // simulators that live in another repository (served from their own GitHub Pages site)
+  var EXT_SIMS = { "clean-room": "https://kariemm11.github.io/Cleanroom-Heat-Recovery-Air-Pump/" };
   var root = document.documentElement, body = document.body;
   var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fine = window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -17,7 +19,8 @@
     var local = !/^https?:$/.test(location.protocol) || /^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname);
     return local ? CANON : location.origin + location.pathname.replace(/[^/]*$/, "");
   }
-  function simURL(key, qs) { return siteBase() + "simulators/" + key + ".html" + (qs ? "?" + qs : ""); }
+  function simURL(key, qs) { return (EXT_SIMS[key] || siteBase() + "simulators/" + key + ".html") + (qs ? "?" + qs : ""); }
+  function simPath(key) { return EXT_SIMS[key] || "simulators/" + key + ".html"; }
   function theme() {
     var t = root.getAttribute("data-theme");
     if (t) return t;
@@ -480,8 +483,8 @@
       cur = key;
       $$("#vTabs button").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.v === key)); });
       frame.classList.remove("ready"); load.style.display = "";
-      frame.src = "simulators/" + key + ".html?theme=" + theme();
-      open.href = "simulators/" + key + ".html";
+      frame.src = simPath(key) + "?theme=" + theme();
+      open.href = simPath(key);
     }
     frame.addEventListener("load", function () {
       if (!frame.src || frame.src === "about:blank") return;

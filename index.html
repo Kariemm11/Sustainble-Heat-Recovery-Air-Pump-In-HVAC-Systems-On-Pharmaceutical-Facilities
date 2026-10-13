@@ -7,7 +7,7 @@
 <meta name="description" content="Sustainable heat recovery air pump in HVAC systems on pharmaceutical facilities — interactive 3D simulators. Eng. Kariem Moussa, supervised by Dr. Eng. Ahmed Maher, Pharmaceutical Engineering, German International University.">
 <meta name="theme-color" content="#060a10">
 <meta property="og:title" content="Sustainable Heat Recovery Air Pump in HVAC Systems on Pharmaceutical Facilities">
-<meta property="og:description" content="Three interactive 3D simulators: heat recovery unit, air handling unit, and the combined AHU + air pump system.">
+<meta property="og:description" content="Interactive 3D simulators: heat recovery unit, air handling unit, the combined AHU + air pump system, and a clean-room test rig.">
 <meta property="og:image" content="assets/img/og.png">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <script>try{var t=localStorage.getItem("hr-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -47,6 +47,7 @@
     <a href="#calculator">Calculator</a>
     <a href="#access">QR access</a>
     <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
   </nav>
   <div class="nav-actions">
     <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">
@@ -71,7 +72,7 @@
       <span class="line accent"><span>Air</span> <span>Pump</span> <span>in</span> <span>HVAC</span></span>
       <span class="line small"><span>Systems</span> <span>on</span> <span>Pharmaceutical</span> <span>Facilities</span></span>
     </h1>
-    <p class="lede reveal" style="--d:.9s">Recovering the energy that cleanroom exhaust air carries away — a crossflow plate core and an R32 air pump working together, explored through three interactive 3D simulators.</p>
+    <p class="lede reveal" style="--d:.9s">Recovering the energy that cleanroom exhaust air carries away — a crossflow plate core and an R32 air pump working together, explored through interactive 3D simulators and a clean-room test rig.</p>
     <div class="hero-cta reveal" style="--d:1.05s">
       <a class="btn btn-primary magnetic" href="#simulators">
         <span>Explore the simulators</span>
@@ -244,7 +245,7 @@
   <div class="wrap">
     <header class="sec-head">
       <p class="kicker reveal">03 — Interactive 3D simulators</p>
-      <h2 class="reveal" style="--d:.06s">Three models. Every variable is yours to change.</h2>
+      <h2 class="reveal" style="--d:.06s">Three models and a working test rig. Every variable is yours to change.</h2>
       <p class="reveal" style="--d:.12s">Orbit, zoom, explode the casing and edit the design values — airflow, recovery efficiency, outdoor and room temperatures. Every model recalculates its air states live, and any setup can be shared as a link or QR code.</p>
     </header>
 
@@ -299,6 +300,25 @@
             <button class="btn btn-primary btn-sm" data-launch="heat-pump-ahu">Launch here</button>
             <a class="btn btn-ghost btn-sm" href="simulators/heat-pump-ahu.html" data-transition>Full screen ↗</a>
             <button class="btn btn-icon" data-qr="heat-pump-ahu" aria-label="QR code for this simulator"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 20h1"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="sim sim-wide reveal" style="--d:.24s" data-sim="clean-room">
+        <div class="sim-media tilt">
+          <img src="assets/img/sim-clean-room.jpg" alt="3D model of the clean-room test rig: AHU and air pump in the plant room supplying a clean room with a vial filling machine" loading="lazy" width="1500" height="920">
+          <span class="sim-tag hot">Model D · Clean-room test rig</span>
+          <div class="sim-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="sim-body">
+          <h3>Clean-room test rig: the system at work</h3>
+          <p>A 1.0 × 0.5 m acrylic rig. In the plant room, the AHU and the heat-recovery air pump run in parallel; they supply a Grade B clean room through ducts and ceiling diffusers. The room holds a vial filling machine under Grade A first air, a pass box and an operator. A live HMI shows every sensor, the seven control loops, the energy saving, CO₂, ACH, particle counts and the contamination-containment strategy.</p>
+          <ul class="chips"><li>Live HMI</li><li>7 PI loops</li><li>Energy &amp; CO₂</li><li>Grade A / B zones</li><li>Particle counter</li><li>SolidWorks STEP</li></ul>
+          <div class="sim-acts">
+            <button class="btn btn-primary btn-sm" data-launch="clean-room">Launch here</button>
+            <a class="btn btn-ghost btn-sm" href="https://kariemm11.github.io/Cleanroom-Heat-Recovery-Air-Pump/" target="_blank" rel="noopener">Full screen ↗</a>
+            <button class="btn btn-icon" data-qr="clean-room" aria-label="QR code for this simulator"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 20h1"/></svg></button>
+            <a class="btn btn-ghost btn-sm" href="https://github.com/Kariemm11/Cleanroom-Heat-Recovery-Air-Pump" target="_blank" rel="noopener">Rig repository ↗</a>
           </div>
         </div>
       </article>
@@ -387,6 +407,7 @@
         <button role="tab" aria-selected="false" data-t="heat-recovery">Heat recovery unit</button>
         <button role="tab" aria-selected="false" data-t="ahu">Air handling unit</button>
         <button role="tab" aria-selected="false" data-t="heat-pump-ahu">AHU + air pump</button>
+        <button role="tab" aria-selected="false" data-t="clean-room">Clean-room rig</button>
       </div>
       <div class="qr-link reveal" style="--d:.24s">
         <code id="qrUrl"></code>
@@ -448,8 +469,15 @@
       <a href="simulators/heat-recovery.html" data-transition>Heat recovery unit</a>
       <a href="simulators/ahu.html" data-transition>Air handling unit</a>
       <a href="simulators/heat-pump-ahu.html" data-transition>AHU + air pump</a>
+      <a href="https://kariemm11.github.io/Cleanroom-Heat-Recovery-Air-Pump/" target="_blank" rel="noopener">Clean-room test rig ↗</a>
+      <a href="#contact">Contact</a>
       <a href="#top">Back to top ↑</a>
     </div>
+  </div>
+  <div class="wrap foot-contact" id="contact">
+    <p class="foot-title">Contact</p>
+    <p>Questions about the project, the simulators or the test rig? Email Eng. Kariem Moussa:</p>
+    <a class="btn btn-primary btn-sm mail" href="mailto:kareimmoussa@gmail.com?subject=Heat%20Recovery%20Air%20Pump%20project"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>kareimmoussa@gmail.com</a>
   </div>
   <p class="wrap foot-copy">© <span id="year">2026</span> Kariem Moussa · German International University</p>
 </footer>
@@ -461,6 +489,7 @@
       <button role="tab" data-v="heat-recovery">Heat recovery unit</button>
       <button role="tab" data-v="ahu">Air handling unit</button>
       <button role="tab" data-v="heat-pump-ahu">AHU + air pump</button>
+      <button role="tab" data-v="clean-room">Clean-room rig</button>
     </div>
     <div class="v-acts">
       <button class="btn btn-sm btn-ghost" id="vShare" type="button">Share / QR</button>
