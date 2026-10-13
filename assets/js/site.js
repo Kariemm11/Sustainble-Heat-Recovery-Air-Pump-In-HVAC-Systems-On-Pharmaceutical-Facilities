@@ -483,7 +483,8 @@
       cur = key;
       $$("#vTabs button").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.v === key)); });
       frame.classList.remove("ready"); load.style.display = "";
-      frame.src = simPath(key) + "?theme=" + theme();
+      // external simulators: a fresh URL each launch, so the frame never shows a stale cached version
+      frame.src = simPath(key) + "?theme=" + theme() + (EXT_SIMS[key] ? "&t=" + Date.now() : "");
       open.href = simPath(key);
     }
     frame.addEventListener("load", function () {
