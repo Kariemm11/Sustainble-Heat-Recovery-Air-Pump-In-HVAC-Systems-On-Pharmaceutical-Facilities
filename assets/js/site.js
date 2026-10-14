@@ -360,19 +360,19 @@
     var T = {
       winter: { tq: ["−2 °C", "12.4 °C", "22 °C", "22 °C", "7.6 °C", "−2.4 °C"],
         steps: [
-          "Cold outdoor air (−2 °C design) enters through the outdoor-air damper and a coarse panel filter that protects the core.",
-          "In the crossflow plate core the warm exhaust gives up heat through thin aluminium plates. At 60 % effectiveness the fresh air is warmed to about 12 °C — with no air contact, so no cross-contamination.",
+          "Cold outdoor air (−2 °C design) enters through the fresh-air louvre and a coarse panel filter that protects the core. The AHU runs on 100 % fresh air: nothing is recirculated.",
+          "In the non-contact plate core the warm exhaust gives up heat through thin copper (Cu) plates, polished to Ra ≤ 0.8 µm so nothing sticks. At 60 % effectiveness the fresh air is warmed to about 12 °C — with no air contact, so no cross-contamination.",
           "The R32 air pump's evaporator sits in the exhaust downstream of the core and harvests the heat still left in it, cooling the exhaust a further ~10 K before it leaves.",
           "The compressor lifts that heat to a useful temperature and the condenser coil in the AHU releases it into the supply, bringing the fresh air up to the 22 °C set point.",
-          "Final H13 HEPA filters clean the conditioned air before it enters the GMP area. Room exhaust returns to the unit and the cycle repeats."
+          "H13 HEPA in the AHU and bag-in/bag-out H14 HEPA terminals clean the air entering the GMP area. The room exhaust leaves through BIBO HEPA terminals and PT-102; if it is contaminated, DV-101 sends it through an outer BIBO HEPA instead of the core."
         ] },
       summer: { tq: ["35 °C", "28.4 °C", "16 °C", "24 °C", "30.6 °C", "42.6 °C"],
         steps: [
-          "Hot outdoor air (35 °C design) enters through the outdoor-air damper and the panel filter.",
-          "The cooler room exhaust pre-cools the incoming air through the plates: at 60 % effectiveness it drops to about 28 °C before any mechanical cooling is used.",
+          "Hot outdoor air (35 °C design) enters through the fresh-air louvre and the panel filter — 100 % fresh air, once through.",
+          "The cooler room exhaust pre-cools the incoming air through the Cu plates (no contact): at 60 % effectiveness it drops to about 28 °C before any mechanical cooling is used.",
           "The reversing valve swaps the coils: the exhaust-side coil now acts as the condenser, rejecting the air pump's heat into the already-cool exhaust instead of hot outdoor air.",
           "The AHU-side coil becomes the evaporator and cools (and dehumidifies) the supply air to the 16 °C supply set point.",
-          "H13 HEPA filters deliver clean, cool air into the cleanroom while the pressure cascade is maintained."
+          "H13 HEPA in the AHU and BIBO H14 HEPA terminals deliver clean, cool air into the cleanroom while the pressure cascade is maintained."
         ] }
     };
     var lis = $$("#steps li"), badges = $$(".badge", sys);
