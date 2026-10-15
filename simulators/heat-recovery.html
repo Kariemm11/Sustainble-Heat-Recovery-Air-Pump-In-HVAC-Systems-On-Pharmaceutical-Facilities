@@ -148,8 +148,8 @@ input[type=range]{width:100%;accent-color:var(--fresh);margin:0}
       <div class="grp">
         <span class="lbl">Operating mode</span>
         <div class="seg" id="segSeason">
-          <button data-v="winter" aria-pressed="true">Winter heating</button>
-          <button data-v="summer" aria-pressed="false">Summer cooling</button>
+          <button data-v="winter" aria-pressed="false">Winter heating</button>
+          <button data-v="summer" aria-pressed="true">Summer cooling</button>
         </div>
       </div>
 
@@ -647,7 +647,7 @@ function buildRibbons(){
     m.renderOrder=3; ribbons.add(m);
   });
 }
-var state={season:'winter',casing:'ghost',explode:0,speed:1,refrig:true,spin:true,playing:true,dirty:false};
+var state={season:'summer',casing:'ghost',explode:0,speed:1,refrig:true,spin:true,playing:true,dirty:false};
 buildRibbons();
 
 var arrows=new THREE.Group(); scene.add(arrows);

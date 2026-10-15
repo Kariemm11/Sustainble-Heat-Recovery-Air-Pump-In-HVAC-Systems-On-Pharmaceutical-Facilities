@@ -153,8 +153,8 @@ input[type=range]{width:100%;accent-color:var(--fresh);margin:0}
       <div class="grp">
         <span class="lbl">Operating mode</span>
         <div class="seg" id="segSeason">
-          <button data-v="winter" aria-pressed="true">Winter heating</button>
-          <button data-v="summer" aria-pressed="false">Summer cooling</button>
+          <button data-v="winter" aria-pressed="false">Winter heating</button>
+          <button data-v="summer" aria-pressed="true">Summer cooling</button>
         </div>
       </div>
 
@@ -952,7 +952,7 @@ function renderData(mode){
 }
 
 /* --------------------------------------------------------------- state  */
-var state={season:'winter',casing:'ghost',explode:0,speed:1,
+var state={season:'summer',casing:'ghost',explode:0,speed:1,
   doors:true,refrig:true,ducts:true,spin:true,playing:true};
 var COILS={preheat:coilPreheat,cooling:coilCooling,reheat:coilReheat};
 var COILLBL={preheat:lblPre,cooling:lblCool,reheat:lblRe};
