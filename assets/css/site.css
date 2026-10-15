@@ -485,3 +485,18 @@ html,body{overflow-x:clip}
 .foot-contact p{margin:4px 0 12px}
 .foot-contact .mail{display:inline-flex;align-items:center;gap:8px}
 .foot-contact .mail svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}
+
+/* the gap in the industry: risk → answer table and the gains strip */
+.gap-table{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.gt-head,.gt-row{display:grid;grid-template-columns:1fr 1.4fr}
+.gt-head span{padding:14px 20px;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-dim);border-bottom:1px solid var(--line)}
+.gt-row p{margin:0;padding:16px 20px;font-size:15px;line-height:1.5;color:var(--ink-dim)}
+.gt-row p b{color:var(--ink)}
+.gt-row p:last-child{border-left:1px solid var(--line)}
+.gt-row+.gt-row{border-top:1px solid var(--line)}
+.gain{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gain div{border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--surface);display:grid;gap:8px;align-content:start}
+.gain b{font-family:var(--f-disp);font-size:clamp(30px,3.4vw,44px);line-height:1;color:var(--fresh)}
+.gain span{font-size:14px;color:var(--ink-dim);line-height:1.45}
+@media (max-width:1020px){.gain{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.gt-head{display:none}.gt-head,.gt-row{grid-template-columns:1fr}.gt-row p:last-child{border-left:0;border-top:1px dashed var(--line)}.gain{grid-template-columns:1fr}}

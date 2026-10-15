@@ -527,7 +527,7 @@
 
   /* ========================================================= calculator */
   (function calc() {
-    var f = { flow: $("#cFlow"), eff: $("#cEff"), oat: $("#cOat"), room: $("#cRoom"), hours: $("#cHours") };
+    var f = { flow: $("#cFlow"), eff: $("#cEff"), oat: $("#cOat"), room: $("#cRoom"), hours: $("#cHours"), cop: $("#cCop"), price: $("#cPrice"), ef: $("#cEf") };
     var def = {}; Object.keys(f).forEach(function (k) { def[k] = f[k].value; });
     var shownQ = 0, anim = null, out = $(".calc-out");
     function fill(el) { el.style.setProperty("--p", ((el.value - el.min) / (el.max - el.min) * 100) + "%"); }
@@ -538,6 +538,7 @@
       Object.keys(f).forEach(function (k) { fill(f[k]); });
       $("#oFlow").textContent = fmt(V) + " m³/h"; $("#oEff").textContent = f.eff.value + " %";
       $("#oOat").textContent = deg(To); $("#oRoom").textContent = deg(Tr); $("#oHours").textContent = fmt(h) + " h";
+      $("#oCop").textContent = fmt(+f.cop.value, 1); $("#oPrice").textContent = fmt(+f.price.value, 2); $("#oEf").textContent = fmt(+f.ef.value, 2);
       var cap = V * 1.2 * 1.006 / 3600, T1 = To + e * (Tr - To), Q = Math.abs(cap * (T1 - To));
       var heating = Tr >= To;
       out.classList.toggle("cool", !heating);
@@ -550,6 +551,10 @@
       $("#rLift").textContent = (lift >= 0 ? "+" : "−") + fmt(Math.abs(lift), 1) + " K";
       var E = Q * h / 1000;
       $("#rE").textContent = (E >= 100 ? fmt(E) : fmt(E, 1)) + " MWh";
+      var kwh = E * 1000 / Math.max(+f.cop.value, 0.1);                 // electricity the replaced plant would have used
+      $("#rKwh").textContent = (kwh >= 100000 ? fmt(kwh / 1000) : fmt(kwh / 1000, 1)) + " MWh/yr";
+      $("#rCo2").textContent = fmt(kwh * f.ef.value / 1000, 1) + " t/yr";
+      $("#rCost").textContent = fmt(Math.round(kwh * f.price.value)) + " EGP/yr";
       // gauge: log scale up to 1 MW so small and large plants both read well
       var frac = Math.log10(1 + Q) / Math.log10(1001);
       $("#gFill").style.strokeDashoffset = (252 * (1 - clamp(frac, 0, 1))).toFixed(1);
