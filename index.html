@@ -73,7 +73,7 @@
       <span class="line accent"><span>Air</span> <span>Pump</span> <span>in</span> <span>HVAC</span></span>
       <span class="line small"><span>Systems</span> <span>on</span> <span>Pharmaceutical</span> <span>Facilities</span></span>
     </h1>
-    <p class="lede reveal" style="--d:.9s">Safe heat recovery for hazardous pharmaceutical plants — vaccines, biologics, potent and cytotoxic drugs — where the exhaust energy is usually thrown away for fear of leakage and cross-contamination. A non-contact copper (Cu) plate core, a particle-monitored fail-safe exhaust diverter and an R32 air pump let the exhaust pre-cool the hot fresh air, cutting energy, carbon footprint and cost. Explored through interactive 3D simulators and a clean-room test rig.</p>
+    <p class="lede reveal" style="--d:.9s">Safe heat recovery for hazardous pharmaceutical plants — vaccines, biologics, potent and cytotoxic drugs — where the exhaust energy is usually thrown away for fear of leakage and cross-contamination. A non-contact copper (Cu) plate core, a particle-monitored fail-safe exhaust diverter and an R32 air pump let the exhaust pre-cool the hot fresh air, cutting energy use and the carbon footprint. Explored through interactive 3D simulators and a clean-room test rig.</p>
     <div class="hero-cta reveal" style="--d:1.05s">
       <a class="btn btn-primary magnetic" href="#simulators">
         <span>Explore the simulators</span>
@@ -121,7 +121,7 @@
   <div class="wrap">
     <header class="sec-head">
       <p class="kicker reveal">01 — The challenge</p>
-      <h2 class="reveal" style="--d:.06s">Pharmaceutical air is expensive air.</h2>
+      <h2 class="reveal" style="--d:.06s">Pharmaceutical air is energy-hungry air.</h2>
       <p class="reveal" style="--d:.12s">GMP production areas need clean, tightly controlled, often once-through air. Every cubic metre is filtered, heated or cooled, then exhausted — taking its conditioning energy with it.</p>
     </header>
     <div class="cards4">
@@ -191,7 +191,7 @@
       <div><b>7.7 kW</b><span>free pre-cooling per 3 500 m³/h when the exhaust at 24 °C cools 35 °C fresh air through the Cu core (Model A), with no compressor work</span></div>
       <div><b>37–50 %</b><span>less HVAC electricity on the clean-room test rig (summer and winter), with the same supply conditions</span></div>
       <div><b>0</b><span>contact between exhaust and fresh air, and no exhaust is recovered while PT-102 sees contamination</span></div>
-      <div><b>CO₂ + cost</b><span>every kWh not bought cuts the carbon footprint and the bill — work out your plant in the calculator below</span></div>
+      <div><b>CO₂</b><span>every kWh saved cuts the carbon footprint — work out your plant in the calculator below</span></div>
     </div>
   </div>
 </section>
@@ -376,7 +376,7 @@
     <header class="sec-head">
       <p class="kicker reveal">05 — Quick calculator</p>
       <h2 class="reveal" style="--d:.06s">What does the Cu plate core recover?</h2>
-      <p class="reveal" style="--d:.12s">Sensible heat recovered by the core, using the same relation as the simulators: Q = V̇ · ρ · c<sub>p</sub> · ε · (T<sub>room</sub> − T<sub>out</sub>), with ρ = 1.2 kg/m³ and c<sub>p</sub> = 1.006 kJ/kg·K. The electricity saved is that heat divided by the COP of the plant that would otherwise supply it; CO₂ and cost follow from your grid factor and tariff.</p>
+      <p class="reveal" style="--d:.12s">Sensible heat recovered by the core, using the same relation as the simulators: Q = V̇ · ρ · c<sub>p</sub> · ε · (T<sub>room</sub> − T<sub>out</sub>), with ρ = 1.2 kg/m³ and c<sub>p</sub> = 1.006 kJ/kg·K. The electricity saved is that heat divided by the COP of the plant that would otherwise supply it; the CO₂ avoided follows from your grid emission factor.</p>
     </header>
 
     <div class="calc reveal">
@@ -404,10 +404,6 @@
         <div class="field">
           <div class="f-row"><label for="cCop">COP of the plant it replaces</label><output id="oCop">2.8</output></div>
           <input type="range" id="cCop" min="1" max="6" step="0.1" value="2.8">
-        </div>
-        <div class="field">
-          <div class="f-row"><label for="cPrice">Electricity price (EGP/kWh, edit to your tariff)</label><output id="oPrice">2.00</output></div>
-          <input type="range" id="cPrice" min="0.5" max="6" step="0.05" value="2">
         </div>
         <div class="field">
           <div class="f-row"><label for="cEf">Grid emission factor (kg CO₂/kWh)</label><output id="oEf">0.50</output></div>
@@ -438,7 +434,6 @@
           <div><small>Heat recovered over the hours</small><b id="rE">0 MWh</b></div>
           <div><small>Electricity saved</small><b id="rKwh">0 MWh/yr</b></div>
           <div><small>CO₂ avoided</small><b id="rCo2">0 t/yr</b></div>
-          <div><small>Cost saved</small><b id="rCost">0 EGP/yr</b></div>
         </div>
         <p class="note">Sensible heat only, constant conditions. The air pump stage adds to this — see the simulators for the full air-state train and COP.</p>
       </div>
