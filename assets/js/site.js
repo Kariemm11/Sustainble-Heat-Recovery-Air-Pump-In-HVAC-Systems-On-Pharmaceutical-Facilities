@@ -2,6 +2,13 @@
 (function () {
   "use strict";
 
+  // always open at the beginning (the hero): ignore a #section left in the address bar and the
+  // scroll position the browser remembers from the last visit
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (location.hash) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} }
+  window.scrollTo(0, 0);
+  window.addEventListener("load", function () { window.scrollTo(0, 0); });
+
   var CANON = "https://kariemm11.github.io/Sustainble-Heat-Recovery-Air-Pump-In-HVAC-Systems-On-Pharmaceutical-Facilities/";
   var SIM_NAMES = { "heat-recovery": "Heat recovery unit", "ahu": "Air handling unit", "heat-pump-ahu": "AHU + air pump", "clean-room": "Clean-room test rig" };
   // simulators that live in another repository (served from their own GitHub Pages site)
